@@ -23,4 +23,4 @@ By default (if no argument is provided), the program runs a shell for you to ent
 
 --s/--shell: run the shell and enter source code
 
---f/--filepath <path-to-file>: use the file <path-to-file> as the source code
+--f/--filepath {path-to-file}: use the file {path-to-file} as the source code
