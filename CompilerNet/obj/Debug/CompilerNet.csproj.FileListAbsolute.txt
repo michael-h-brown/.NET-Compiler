@@ -1,0 +1,7 @@
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\bin\Debug\CompilerNet.exe.config
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\bin\Debug\CompilerNet.exe
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\bin\Debug\CompilerNet.pdb
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.csprojAssemblyReference.cache
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.csproj.CoreCompileInputs.cache
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.exe
+C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.pdb

@@ -1,0 +1,12 @@
+fib is a function with num,
+	if num is equal to 0,
+		return 0.
+	or num is less than or equal to 2,
+		return 1.
+	otherwise,
+		outOne is fib with num minus 1.
+		outTwo is fib with num minus 2.
+		return outOne add outTwo.
+loop 10 times backwards with i,
+	write fib with i.
+read.

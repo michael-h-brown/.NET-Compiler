@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ECEBB1E2-9ACA-4E9A-8BF5-425D6C7B5845}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CompilerNet</RootNamespace>
+    <AssemblyName>CompilerNet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Token.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\Call.cs" />
+    <Compile Include="Tokens\Multiple_Identifiers.cs" />
+    <Compile Include="Tokens\Operation.cs" />
+    <Compile Include="Tokens\Operator.cs" />
+    <Compile Include="Tokens\Multiply.cs" />
+    <Compile Include="Tokens\Divide.cs" />
+    <Compile Include="Tokens\Minus.cs" />
+    <Compile Include="Tokens\Else.cs" />
+    <Compile Include="Tokens\Or.cs" />
+    <Compile Include="Tokens\If.cs" />
+    <Compile Include="Tokens\Loop.cs" />
+    <Compile Include="Tokens\Input.cs" />
+    <Compile Include="Tokens\Return.cs" />
+    <Compile Include="Tokens\Output.cs" />
+    <Compile Include="Tokens\Add.cs" />
+    <Compile Include="Tokens\String.cs" />
+    <Compile Include="Tokens\Int.cs" />
+    <Compile Include="Tokens\Assignment.cs" />
+    <Compile Include="Tokens\Function.cs" />
+    <Compile Include="Tokens\Identifier.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
