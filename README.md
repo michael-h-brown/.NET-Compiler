@@ -1,7 +1,7 @@
 # .NET-Compiler
 A .NET Compiler that takes source code, converts it to C# then assembles and runs it
 
-# Source Code Documentation (TODO)
+# Source Code Documentation
 
 ## General
 
@@ -84,6 +84,24 @@ In the first example i would go from 9 to 0. In the second i would go from 0 to 
 ## Functions
 
 ## Input/Output
+
+IO is very simple in the language (being based around a Windows Console Application). <read> is used for input, while <write> is used for output. They use the following format: 
+  
+      read <Identifier> from <Identifier>|<String>.
+      write <Operation>|<Call>|<Identifier>|<String>|<Int> to <Identifier>|<String>.
+      
+The <read> statement has an optional Identifier (used to store input as a variable), and the "from <Identifier>|<String>" is optional as way to read a SINGLE LINE from a file (Note: an identifier must be specified to read from a file)
+  
+The <write> statement requires something the output (the first group of items), but the "to <Identifier>|<String>" is optional as a way to write a SINGLE LINE to a file
+  
+Examples:
+
+    read.
+    read input.
+    read fileInput from "inputFile.txt".
+    
+    write output.
+    write fileOutput to "outputFile.txt".
 
 # Command Line Arguments
 
