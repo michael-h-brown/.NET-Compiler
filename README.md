@@ -17,24 +17,24 @@ Variables are dynamic and can be declared with the following:
 
 <identifier> is <Idenfier>|<String>|<Int>|<Operation>|<Call>
   
-  e.g. "thisVariable is 1.",
+  e.g. 
   
+      "thisVariable is 1.",
        "x is "hello"."
 
 ## Operations
 
 Operators are different in this language, take a look:
 
-+ | add
-- | minus
-/ | divide by
-* | times
+    + | add
+    - | minus
+    / | divide by
+    * | times
 
 Examples: 
 
-  "sum is 2 add 3.",
-  
-  "div is 4 divide by 2."
+    "sum is 2 add 3.",
+    "div is 4 divide by 2."
 
 ## If/Else
 
