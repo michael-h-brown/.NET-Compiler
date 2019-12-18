@@ -19,8 +19,8 @@ Variables are dynamic and can be declared with the following:
   
   e.g. 
   
-      "thisVariable is 1.",
-       "x is "hello"."
+      thisVariable is 1.
+       x is "hello".
 
 ## Operations
 
@@ -33,8 +33,8 @@ Operators are different in this language, take a look:
 
 Examples: 
 
-    "sum is 2 add 3.",
-    "div is 4 divide by 2."
+    sum is 2 add 3.
+    div is 4 divide by 2.
 
 ## If/Else
 
@@ -48,6 +48,15 @@ Examples:
       <statements>
       
 As you can see <or> takes the place of <elif/else if> in other languages and <otherwise> takes the place of <else>
+  
+Example:
+
+    if x is greater than or equal to 5,
+      <statements>
+    or x is less than 4,
+      <statements>
+    otherwise,
+      <statements>
 
 ## Loops
 
