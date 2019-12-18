@@ -86,7 +86,7 @@ namespace CompilerNet
         static string[] shellArgs = new string[]
         {
             "--shell",
-            "--s"
+            "--s",
         };
 
         static string[] fileArgs = new string[]
@@ -95,11 +95,25 @@ namespace CompilerNet
             "--f",
         };
 
+        static string[] printArgs = new string[]
+        {
+            "--print",
+            "--p",
+        };
+
+        static string[] runArgs = new string[]
+        {
+            "--run",
+            "--r",
+        };
+
         static void Main(string[] args)
         {
             string sourceCode = "";
             List<int> commandIndexes = new List<int>();
             bool useShell = true;
+            bool printCode = false;
+            bool runCode = false;
             string filePath = "";
             for (int i = 0; i < args.Length; ++i)
             {
@@ -124,6 +138,11 @@ namespace CompilerNet
                         filePath = args[index + 1];
                     }
                     break;
+                } else if (printArgs.Contains(args[index])) {
+                    printCode = true;
+                } else if (runArgs.Contains(args[index]))
+                {
+                    runCode = true;
                 }
             }
 
@@ -324,7 +343,10 @@ namespace CompilerNet
 
             string code = csCode.getCode();
 
-            Console.WriteLine(code);
+            if (printCode)
+            {
+                Console.WriteLine(code);
+            }
 
             MethodInfo main;
 
@@ -362,19 +384,21 @@ namespace CompilerNet
 
             Console.WriteLine("\nSuccessfully Compiled");
 
-            try
-            {
-                Console.WriteLine("Running...\n");
-                main.Invoke(new[] { "Microsoft.CSharp.dll", "System.Core.dll" }, new Object[] { null });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Runtime Error: " + e.Message);
-                Console.ReadLine();
-                return;
-            }
+            if (runCode) {
+                try
+                {
+                    Console.WriteLine("Running...\n");
+                    main.Invoke(new[] { "Microsoft.CSharp.dll", "System.Core.dll" }, new Object[] { null });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Runtime Error: " + e.Message);
+                    Console.ReadLine();
+                    return;
+                }
 
-            Console.WriteLine("\nProgram Finished...");
+                Console.WriteLine("\nProgram Finished...");
+            }
             Console.ReadLine();
         }
     }
