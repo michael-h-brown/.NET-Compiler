@@ -17,9 +17,9 @@ There are two data types:
 
 Variables are dynamic and can be declared with the following:
 
-<identifier> is <Idenfier>|<String>|<Int>|<Operation>|<Call>
+    <identifier> is <Idenfier>|<String>|<Int>|<Operation>|<Call>
   
-  e.g. 
+  Examples: 
   
       thisVariable is 1.
        x is "hello".
@@ -49,7 +49,7 @@ Examples:
     otherwuse,
       <statements>
       
-As you can see <or> takes the place of <elif/else if> in other languages and <otherwise> takes the place of <else>
+As you can see "or" takes the place of "elif/else if" in other languages and "otherwise" takes the place of "else"
   
 Example:
 
@@ -69,7 +69,7 @@ There are no while loops in the language (this may change in the future). But fo
 
 Using a string in a loop makes no sense (and does not work) and should be removed in the future (or changed to automatically use the length).
 
-The <backwards> is optional and allows for a loop to be run backwards
+The "backwards" is optional and allows for a loop to be run backwards
   
 Examples:
     
@@ -92,9 +92,9 @@ IO is very simple in the language (being based around a Windows Console Applicat
       read <Identifier> from <Identifier>|<String>.
       write <Operation>|<Call>|<Identifier>|<String>|<Int> to <Identifier>|<String>.
       
-The <read> statement has an optional Identifier (used to store input as a variable), and the "from <Identifier>|<String>" is optional as way to read a SINGLE LINE from a file (Note: an identifier must be specified to read from a file)
+The "read" statement has an optional Identifier (used to store input as a variable), and the "from <Identifier/String>" is optional as way to read a SINGLE LINE from a file (Note: an identifier must be specified to read from a file)
   
-The <write> statement requires something the output (the first group of items), but the "to <Identifier>|<String>" is optional as a way to write a SINGLE LINE to a file
+The "write" statement requires something the output (the first group of items), but the "to <Identifier/String>" is optional as a way to write a SINGLE LINE to a file
   
 Examples:
 
