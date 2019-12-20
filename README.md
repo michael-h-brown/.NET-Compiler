@@ -8,7 +8,9 @@ A .NET Compiler that takes source code, converts it to C# then assembles and run
 The source code is very dynamic, but also very simplified. Indentation is used to parent functions, if statements and loops to whatever statements are inside. Statements end with a "." while statements that cause indentation (such as loops, if statements etc.) end with a ","
 
 There are two data types:
+
   -String
+  
   -Int
 
 ## Declaring Variables
