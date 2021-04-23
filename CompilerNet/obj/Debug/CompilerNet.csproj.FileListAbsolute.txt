@@ -5,3 +5,10 @@ C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet
 C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.csproj.CoreCompileInputs.cache
 C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.exe
 C:\Users\MichaelBrown\source\repos\CompilerNet\CompilerNet\obj\Debug\CompilerNet.pdb
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\bin\Debug\CompilerNet.exe.config
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\bin\Debug\CompilerNet.exe
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\bin\Debug\CompilerNet.pdb
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\obj\Debug\CompilerNet.csprojAssemblyReference.cache
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\obj\Debug\CompilerNet.csproj.CoreCompileInputs.cache
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\obj\Debug\CompilerNet.exe
+C:\Users\MichaelBrown\Source\Repos\michael-h-brown\.NET-Compiler\CompilerNet\obj\Debug\CompilerNet.pdb

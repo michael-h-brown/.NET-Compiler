@@ -10,7 +10,8 @@ namespace CompilerNet.Tokens
 {
     class Call: Token
     {
-        public static string structure = "(" + Identifier.structure + ")(( (of) (" + Identifier.structure + "))| (with) (" + Multiple_Identifiers.structure + "|" + Int.structure + "|" + String.structure + "|" + Operation.structure + "))?.?";
+        public static string structure = "(" + Identifier.structure + ") (of) (" + Identifier.structure + ")|(" + Identifier.structure + ") (with) (" + Operation.structure + "|" + Multiple_Identifiers.structure + "|" + Int.structure + "|" + String.structure + ").?|(" + Identifier.structure + ")";
+        //public static string structure = "(" + Identifier.structure + ")(( (of) (" + Identifier.structure + "))| (with) (" + Multiple_Identifiers.structure + "|" + Int.structure + "|" + String.structure + "|" + Operation.structure + "))?.?";
         Identifier name;
         private bool isObjectCall;
         public Call(Identifier Name, Token newValue, bool newIsObjectCall = false)
@@ -41,50 +42,55 @@ namespace CompilerNet.Tokens
                 return null;
             }
 
-            if (matches[0].Groups[4].Value == "of")
+            if (matches[0].Groups[2].Value == "of")
             {
                 Identifier testName = Identifier.checkToken(matches[0].Groups[1].Value);
                 if (testName == null)
                 {
                     return null;
                 }
-                Identifier testValue = Identifier.checkToken(matches[0].Groups[5].Value);
+                Identifier testValue = Identifier.checkToken(matches[0].Groups[3].Value);
                 if (testValue == null)
                 {
                     return null;
                 }
                 return new Call(testName, testValue, true);
             }
-            else
+            else if (matches[0].Groups[5].Value == "with")
             {
-                Identifier testName = Identifier.checkToken(matches[0].Groups[1].Value);
+                Identifier testName = Identifier.checkToken(matches[0].Groups[4].Value);
                 if (testName == null || testName.isFunction == false)
                 {
                     return null;
                 }
 
-                Token testValue = null;
-                if (matches[0].Groups[3].Value == "with")
+                Token testValue = Operation.checkToken(matches[0].Groups[6].Value);
+                if (testValue == null)
                 {
-                    testValue = Operation.checkToken(matches[0].Groups[4].Value);
+                    testValue = Identifier.checkToken(matches[0].Groups[6].Value);
                     if (testValue == null)
                     {
-                        testValue = Identifier.checkToken(matches[0].Groups[4].Value);
+                        testValue = String.checkToken(matches[0].Groups[6].Value);
                         if (testValue == null)
                         {
-                            testValue = String.checkToken(matches[0].Groups[4].Value);
+                            testValue = Int.checkToken(matches[0].Groups[6].Value);
                             if (testValue == null)
                             {
-                                testValue = Int.checkToken(matches[0].Groups[4].Value);
-                                if (testValue == null)
-                                {
-                                    return null;
-                                }
+                                return null;
                             }
                         }
                     }
                 }
                 return new Call(testName, testValue);
+            } else
+            {
+                Identifier testName = Identifier.checkToken(matches[0].Groups[4].Value);
+                if (testName == null || testName.isFunction == false)
+                {
+                    return null;
+                }
+
+                return new Call(testName, null);
             }
         }
     }

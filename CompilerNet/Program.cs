@@ -39,129 +39,35 @@ namespace CompilerNet
         static string shell()
         {
             string sourceCode = "";
-            Console.Write("1| ");
-            int lineCount = 1;
             string input = Console.ReadLine();
             while (input != "run")
             {
-                ++lineCount;
                 sourceCode += input + "\n";
-                Console.Write(lineCount.ToString() + "| ");
                 input = Console.ReadLine();
             }
             sourceCode = sourceCode.Trim();
             return sourceCode;
         }
 
-        static string fromFile(string FilePath)
+        static string fromFile()
         {
-            //OG: sourceCode.txt
-            StreamReader reader = null;
-            try
+            StreamReader reader = new StreamReader("sourceCode.txt");
+            string sourceCode = "";
+            string line = reader.ReadLine();
+            while (line != null)
             {
-                reader = new StreamReader(FilePath);
-                string sourceCode = "";
-                string line = reader.ReadLine();
-                while (line != null)
-                {
-                    sourceCode += line + "\n";
-                    line = reader.ReadLine();
-                }
-                reader.Close();
-                reader = null;
-                sourceCode = sourceCode.Trim();
-                return sourceCode;
-            } catch (Exception e)
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                    reader = null;
-                }
-                Console.WriteLine(e);
-                return "ERROR";
+                sourceCode += line + "\n";
+                line = reader.ReadLine();
             }
+            reader.Close();
+            sourceCode = sourceCode.Trim();
+            return sourceCode;
         }
-
-        static string[] shellArgs = new string[]
-        {
-            "--shell",
-            "--s",
-        };
-
-        static string[] fileArgs = new string[]
-        {
-            "--filepath",
-            "--f",
-        };
-
-        static string[] printArgs = new string[]
-        {
-            "--print",
-            "--p",
-        };
-
-        static string[] runArgs = new string[]
-        {
-            "--run",
-            "--r",
-        };
 
         static void Main(string[] args)
         {
-            string sourceCode = "";
-            List<int> commandIndexes = new List<int>();
-            bool useShell = true;
-            bool printCode = false;
-            bool runCode = false;
-            string filePath = "";
-            for (int i = 0; i < args.Length; ++i)
-            {
-                if (args[i].Substring(0, 2) == "--")
-                {
-                    commandIndexes.Add(i);
-                }
-            }
-
-            foreach (int index in commandIndexes)
-            {
-                if (shellArgs.Contains(args[index]))
-                {
-                    useShell = true;
-                    break;
-                }
-                else if (fileArgs.Contains(args[index]))
-                {
-                    if (index < args.Length - 1)
-                    {
-                        useShell = false;
-                        filePath = args[index + 1];
-                    }
-                    break;
-                } else if (printArgs.Contains(args[index])) {
-                    printCode = true;
-                } else if (runArgs.Contains(args[index]))
-                {
-                    runCode = true;
-                }
-            }
-
-            if (useShell)
-            {
-                sourceCode = shell();
-            }
-            else
-            {
-                sourceCode = fromFile(filePath);
-            }
-
-            if (sourceCode == "ERROR")
-            {
-                Console.WriteLine("There was an error reading the file");
-                Console.ReadLine();
-                return;
-            }
-
+            //string sourceCode = shell();
+            string sourceCode = fromFile();
             Console.Clear();
 
             Console.WriteLine("GOT SOURCE CODE: ");
@@ -174,7 +80,6 @@ namespace CompilerNet
             List<string> requiredLibraries = new List<string> { "System" };
             int indentIndex = 0;
             Stack<Token> indentParent = new Stack<Token>();
-            int lineNo = 1;
 
             foreach (string line in lines)
             {
@@ -183,40 +88,59 @@ namespace CompilerNet
                 bool isIndentation = false;
                 int thisIndent = line.Count(x => x == '\t');
                 string thisLine = line.Trim();
-
-                List<int> indentIndexes = new List<int>
-                {
-                    3, 4, 5, 6
-                };
-
                 Token testToken = Function.checkToken(thisLine);
                 if (testToken == null)
                 {
-                    List<Token> testTokens = new List<Token>
+                    testToken = Assignment.checkToken(thisLine);
+                    if (testToken == null)
                     {
-                        Assignment.checkToken(thisLine),
-                        Input.checkToken(thisLine),
-                        Output.checkToken(thisLine),
-                        Loop.checkToken(thisLine),
-                        If.checkToken(thisLine),
-                        Or.checkToken(thisLine),
-                        Else.checkToken(thisLine),
-                        Return.checkToken(thisLine)
-                    };
-
-                    bool tokenFound = false;
-                    for (int i = 0; i < testTokens.Count; i++)
-                    {
-                        if (testTokens[i] != null)
+                        testToken = Input.checkToken(thisLine);
+                        if (testToken == null)
                         {
-                            tokenFound = true;
-                            testToken = testTokens[i];
-                            break;
+                            testToken = Output.checkToken(thisLine);
+                            if (testToken == null)
+                            {
+                                testToken = Loop.checkToken(thisLine);
+                                if (testToken == null)
+                                {
+                                    testToken = If.checkToken(thisLine);
+                                    if (testToken == null)
+                                    {
+                                        testToken = Or.checkToken(thisLine);
+                                        if (testToken == null)
+                                        {
+                                            testToken = Else.checkToken(thisLine);
+                                            if (testToken == null)
+                                            {
+                                                testToken = Return.checkToken(thisLine);
+                                                if (testToken == null)
+                                                {
+                                                    Console.WriteLine("Error: null token");
+                                                    Console.ReadLine();
+                                                    return;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                isIndentation = true;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            isIndentation = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        isIndentation = true;
+                                    }
+                                }
+                                else
+                                {
+                                    isIndentation = true;
+                                }
+                            }
                         }
-                    }
-                    if (!tokenFound)
-                    {
-                        Console.WriteLine("No matching token found for line " + lineNo.ToString() + ": " + thisLine);
                     }
                 }
                 else
@@ -311,7 +235,7 @@ namespace CompilerNet
                         mainTokens.Add(testToken);
                     }
                 }
-                ++lineNo;
+
             }
 
             Console.WriteLine("\nOUTPUT\n");
@@ -343,10 +267,7 @@ namespace CompilerNet
 
             string code = csCode.getCode();
 
-            if (printCode)
-            {
-                Console.WriteLine(code);
-            }
+            Console.WriteLine(code);
 
             MethodInfo main;
 
@@ -384,21 +305,19 @@ namespace CompilerNet
 
             Console.WriteLine("\nSuccessfully Compiled");
 
-            if (runCode) {
-                try
-                {
-                    Console.WriteLine("Running...\n");
-                    main.Invoke(new[] { "Microsoft.CSharp.dll", "System.Core.dll" }, new Object[] { null });
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Runtime Error: " + e.Message);
-                    Console.ReadLine();
-                    return;
-                }
-
-                Console.WriteLine("\nProgram Finished...");
+            try
+            {
+                Console.WriteLine("Running...\n");
+                main.Invoke(new[] { "Microsoft.CSharp.dll", "System.Core.dll" }, new Object[] { null });
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Runtime Error: " + e.Message);
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("\nProgram Finished...");
             Console.ReadLine();
         }
     }
